@@ -1,0 +1,90 @@
+package com.darina_pc.crypto;
+
+import android.support.annotation.NonNull;
+
+public class Crypto implements Asset{
+
+    private String assetCode;
+    private String asset_type;
+    private String category;
+    private String representationName;
+    private AssetIssuer asset_issuer;
+    private int rating;
+    private Boolean is_counter;
+
+    public Crypto(String assetCode, String asset_type, String category, String representationName, AssetIssuer asset_issuer, int rating, Boolean is_counter) {
+        this.assetCode = assetCode;
+        this.asset_type = asset_type;
+        this.category = category;
+        this.representationName = representationName;
+        this.asset_issuer = asset_issuer;
+        this.rating = rating;
+        this.is_counter = is_counter;
+    }
+
+    @Override
+    public String getAssetCode() {
+        return assetCode;
+    }
+
+    @Override
+    public void setAssetCode(String assetCode) {
+        this.assetCode = assetCode;
+    }
+
+    @Override
+    public String getCategory() {
+        return category;
+    }
+
+    @Override
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    @Override
+    public String getRepresentationName() {
+        return representationName;
+    }
+
+    @Override
+    public void setRepresentationName(String representationName) {
+        this.representationName = representationName;
+    }
+
+    @Override
+    public int getRating() {
+        return rating;
+    }
+
+    @Override
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getAsset_type() {
+        return asset_type;
+    }
+
+    public void setAsset_type(String asset_type) {
+        this.asset_type = asset_type;
+    }
+
+    public AssetIssuer getAsset_issuer() {
+        return asset_issuer;
+    }
+
+    public void setAsset_issuer(AssetIssuer asset_issuer) {
+        this.asset_issuer = asset_issuer;
+    }
+
+    public Boolean getIs_counter() {
+        return is_counter;
+    }
+
+    public void setIs_counter(Boolean is_counter) {
+        this.is_counter = is_counter;
+    }
+
+
+}
