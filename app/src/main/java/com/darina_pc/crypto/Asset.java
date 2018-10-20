@@ -18,6 +18,7 @@ public interface Asset {
     public void setRepresentationName(String representationName);
     public int getRating();
     public void setRating(int rating) ;
+    public String getAsset_type();
 
     public AssetIssuer getAsset_issuer();
 

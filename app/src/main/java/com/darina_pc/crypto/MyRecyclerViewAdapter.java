@@ -12,13 +12,15 @@ import java.util.List;
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
     private List<Asset> myAssets;
     private LayoutInflater mInflater;
-    //private ItemClickListener mClickListener;
+    private ItemClickListener mClickListener;
 
     // data is passed into the constructor
     MyRecyclerViewAdapter(Context context, List<Asset> myAssets) {
         this.mInflater = LayoutInflater.from(context);
         this.myAssets = myAssets;
     }
+
+
 
     @Override
     public int getItemViewType(int position) {
@@ -87,10 +89,18 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
         return myAssets.size();
     }
 
+    void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
+
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
 
 
 
-    public static class Native_and_Fiat_ViewHolder extends RecyclerView.ViewHolder {
+
+    public class Native_and_Fiat_ViewHolder extends RecyclerView.ViewHolder  {
 
         public TextView tV_category, tV_rName, tV_assetCode_rating;
 
@@ -101,7 +111,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
             tV_assetCode_rating = (TextView) itemView.findViewById(R.id.tV_assetCode_rating);
         }
     }
-    public static class Crypto_ViewHolder extends RecyclerView.ViewHolder {
+    public class Crypto_ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView tV_crypto_category, tV_cpypto_rName, tV_cpypto_assetCode_rating, tV_cpypto_domain;
 
@@ -111,6 +121,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
             tV_cpypto_rName = (TextView) itemView.findViewById(R.id.tV_cpypto_rName);
             tV_cpypto_assetCode_rating = (TextView) itemView.findViewById(R.id.tV_cpypto_assetCode_rating);
             tV_cpypto_domain = (TextView) itemView.findViewById(R.id.tV_cpypto_domain);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 }

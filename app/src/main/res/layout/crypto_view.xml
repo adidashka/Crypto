@@ -7,7 +7,8 @@
     <TextView
         android:id="@+id/tV_crypto_category"
         android:layout_width="155dp"
-        android:layout_height="30pt" />
+        android:layout_height="30pt"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/tV_cpypto_rName"
@@ -41,7 +42,6 @@
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="3dp" />
-
 
 
 </RelativeLayout>

@@ -58,6 +58,11 @@ public class Fiat implements Asset {
         this.rating = rating;
     }
 
+    @Override
+    public String getAsset_type() {
+        return null;
+    }
+
     public Boolean getIs_counter() {
         return is_counter;
     }

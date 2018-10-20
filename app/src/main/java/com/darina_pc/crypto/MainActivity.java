@@ -1,31 +1,22 @@
 package com.darina_pc.crypto;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity /*implements MyRecyclerViewAdapter.ItemClickListener*/{
+
+public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
     private ArrayList<Asset> myAssets = new ArrayList<Asset>();
     MyRecyclerViewAdapter adapter;
 
@@ -91,31 +82,31 @@ public class MainActivity extends AppCompatActivity /*implements MyRecyclerViewA
                     myAssets.add(myFiat);
                 }
             }
-
-
                 RecyclerView recyclerView = findViewById(R.id.recyclerView);
                 int numberOfColumns = 1;
                 recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
                 adapter = new MyRecyclerViewAdapter(this, myAssets);
-                //adapter.setClickListener(this);
+                adapter.setClickListener(this);
                 recyclerView.setAdapter(adapter);
-
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-
     }
 
-//    @Override
-//    public void onItemClick(View view, int position) {
-//        Log.i("TAG", "You clicked number " + adapter.getItem(position) + ", which is at cell position " + position);
-//    }
+    @Override
+    public void onItemClick(View view, int position) {
+        Asset asset_pressed = myAssets.get(position);
+        String base_asset_type = asset_pressed.getAsset_type();
+        String base_asset_code = asset_pressed.getAssetCode();
+        String base_asset_issuer = asset_pressed.getAsset_issuer().getAddress();
+
+        Intent intent = new Intent(MainActivity.this, ActivityTrade.class);
+        intent.putExtra("base_asset_type", base_asset_type);
+        intent.putExtra("base_asset_code", base_asset_code);
+        intent.putExtra("base_asset_issuer", base_asset_issuer);
+        startActivity(intent);
+    }
 
     private String  convertStreamToString(InputStream is) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
