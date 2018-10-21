@@ -14,7 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
     private ArrayList<Asset> myAssets = new ArrayList<Asset>();
@@ -82,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
                     myAssets.add(myFiat);
                 }
             }
+
+            Collections.sort(myAssets);
+
                 RecyclerView recyclerView = findViewById(R.id.recyclerView);
                 int numberOfColumns = 1;
                 recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
@@ -118,7 +121,5 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         }
         return  baos.toString();
     }
-
-
 
 }

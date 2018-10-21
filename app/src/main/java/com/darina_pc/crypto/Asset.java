@@ -1,6 +1,8 @@
 package com.darina_pc.crypto;
 
-public interface Asset {
+import android.support.annotation.NonNull;
+
+public interface Asset extends Comparable<Asset>{
     int NATIVVE =   0;
     int FIAT= 1;
     int CRYPTO = 2;
@@ -23,4 +25,5 @@ public interface Asset {
     public AssetIssuer getAsset_issuer();
 
 
+    int compareTo(@NonNull Asset asset);
 }

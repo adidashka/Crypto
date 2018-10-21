@@ -2,7 +2,7 @@ package com.darina_pc.crypto;
 
 import android.support.annotation.NonNull;
 
-public class Native implements Asset {
+public class Native implements Asset{
 
     private String assetCode;
     private String asset_type;
@@ -72,5 +72,12 @@ public class Native implements Asset {
         return null;
     }
 
+
+    @Override
+    public int compareTo(@NonNull Asset otherAsset) {
+        if (otherAsset.getRating() == this.getRating()) return 0;
+        else if (otherAsset.getRating()> this.getRating()) return -1;
+        else return 1;
+    }
 
 }

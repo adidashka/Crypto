@@ -98,8 +98,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter{
     }
 
 
-
-
     public class Native_and_Fiat_ViewHolder extends RecyclerView.ViewHolder  {
 
         public TextView tV_category, tV_rName, tV_assetCode_rating;

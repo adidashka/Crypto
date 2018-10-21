@@ -1,13 +1,14 @@
 package com.darina_pc.crypto;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.Date;
 
 public class TradeResponse {
 
     public Links _links;
     public Embedded _embedded;
-
 
 
     public class Links {
@@ -27,31 +28,27 @@ public class TradeResponse {
     }
 
 
-
     public class Embedded {
         ArrayList<Record> records;
-
-        public ArrayList<Record> getRecords() {
-            return records;
-        }
     }
 
     public static class Record {
+
         public LinksR _linksR;
         String id;
         String paging_token;
-        String ledger_close_time;   //
+        String ledger_close_time;
         String offer_id;
         String base_account;
-        float base_amount;            //
+        float base_amount;
         String base_asset_type;
-        String base_asset_code;     //
+        String base_asset_code;
         String base_asset_issuer;
         String counter_account;
-        float counter_amount;         //
+        float counter_amount;
         String counter_asset_type;
-        Boolean base_is_seller;     //
-        public Price price;         //
+        Boolean base_is_seller;
+        public Price price;
 
         public Record(LinksR _linksR, String id, String paging_token, String ledger_close_time, String offer_id, String base_account, float base_amount, String base_asset_type, String base_asset_code, String base_asset_issuer, String counter_account, float counter_amount, String counter_asset_type, Boolean base_is_seller, Price price) {
             this._linksR = _linksR;
@@ -70,6 +67,17 @@ public class TradeResponse {
             this.base_is_seller = base_is_seller;
             this.price = price;
         }
+
+        public Date get_close_Data() {
+            SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd'T'hh:mm:ss'Z'");
+            try {
+                Date close_Date = ft.parse(ledger_close_time);
+                return close_Date;
+            }catch (ParseException e) {
+                System.out.println(e);
+                return null;
+            }
+        }
     }
 
     public class LinksR {
@@ -78,8 +86,6 @@ public class TradeResponse {
         public Counter counter;
         public Operation next;
     }
-
-
 
     public class Base {
         String href;
@@ -92,18 +98,14 @@ public class TradeResponse {
     }
 
     public static class Price{
-        int n;        //
-        int d;        //
+        int n;
+        int d;
 
         public Price(int n, int d) {
             this.n = n;
             this.d = d;
         }
     }
-
-
-
-
 
 }
 

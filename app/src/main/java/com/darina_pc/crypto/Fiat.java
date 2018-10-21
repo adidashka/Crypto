@@ -75,5 +75,12 @@ public class Fiat implements Asset {
         return null;
     }
 
+    @Override
+    public int compareTo(@NonNull Asset otherAsset) {
+        if (otherAsset.getRating() == this.getRating()) return 0;
+        else if (otherAsset.getRating()> this.getRating()) return -1;
+        else return 1;
+    }
+
 
 }
