@@ -8,40 +8,60 @@
         android:id="@+id/tV_crypto_category"
         android:layout_width="155dp"
         android:layout_height="30pt"
-        android:gravity="center" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/darkGrey"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/tV_cpypto_rName"
-        android:layout_width="224dp"
+        android:layout_width="229dp"
         android:layout_height="10pt"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        tools:ignore="RtlCompat" />
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@color/darkGrey"
+        android:gravity="left|center_vertical"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        tools:ignore="RtlCompat"
+        tools:layout_marginRight="0dp" />
 
     <TextView
         android:id="@+id/tV_cpypto_assetCode_rating"
-        android:layout_width="224dp"
+        android:layout_width="229dp"
         android:layout_height="10pt"
         android:layout_below="@+id/tV_cpypto_rName"
         android:layout_marginStart="0dp"
         android:layout_toEndOf="@+id/tV_crypto_category"
         android:layout_toRightOf="@+id/tV_crypto_category"
+        android:background="@color/darkGrey"
+        android:gravity="left|center_vertical"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
         tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/tV_cpypto_domain"
-        android:layout_width="224dp"
+        android:layout_width="229dp"
         android:layout_height="10pt"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="3dp" />
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/darkGrey"
+        android:gravity="left|center_vertical"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
 
 </RelativeLayout>

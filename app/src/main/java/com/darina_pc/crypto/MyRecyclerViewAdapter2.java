@@ -9,14 +9,17 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class MyRecyclerViewAdapter2 extends RecyclerView.Adapter{
     public final int RECORD = 3;
-    private TradeResponse.Embedded myRecords;
+    public static final int COLOR_BUY = 0x00FF00;
+    public static final int COLOR_SELL = 0xFF0000;
+    private List<TradeResponse.Record> myRecords;
     private LayoutInflater mInflater;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter2(Context context, TradeResponse.Embedded myRecords) {
+    MyRecyclerViewAdapter2(Context context, List<TradeResponse.Record> myRecords) {
         this.mInflater = LayoutInflater.from(context);
         this.myRecords = myRecords;
     }
@@ -24,7 +27,7 @@ public class MyRecyclerViewAdapter2 extends RecyclerView.Adapter{
     @Override
     public int getItemViewType(int position) {
 
-        if (myRecords.records.get(position) instanceof TradeResponse.Record) {
+        if (myRecords.get(position) instanceof TradeResponse.Record) {
             return RECORD;
         } else  {
             return -1;
@@ -45,11 +48,11 @@ public class MyRecyclerViewAdapter2 extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-        TradeResponse.Record mRecord = myRecords.records.get(position);
+        TradeResponse.Record mRecord = myRecords.get(position);
         String base_seller = null;
 
         Date mDate = mRecord.get_close_Data();
-        SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy/MM/dd' - 'hh:mm");
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd/MM/yy' - 'hh:mm");
 
             String ledger_close_time = formatForDateNow.format(mDate);
 
@@ -72,7 +75,7 @@ public class MyRecyclerViewAdapter2 extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return myRecords.records.size();
+        return myRecords.size();
     }
 
     public class Trade_ViewHolder extends RecyclerView.ViewHolder  {

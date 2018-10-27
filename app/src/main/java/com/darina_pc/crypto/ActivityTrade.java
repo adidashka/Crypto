@@ -1,5 +1,6 @@
 package com.darina_pc.crypto;
 
+import android.app.Notification;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +32,9 @@ public class ActivityTrade extends AppCompatActivity {
     private String  base_asset_type, base_asset_code, base_asset_issuer;
     MyRecyclerViewAdapter2 adapter;
 
-    private TradeResponse.Embedded myRecords;
+    private TradeResponse.Embedded em;
+    private ArrayList<TradeResponse.Record> myRecords = new ArrayList<>();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +46,8 @@ public class ActivityTrade extends AppCompatActivity {
         base_asset_issuer = getIntent().getExtras().getString("base_asset_issuer");
 
         myRecords = null;
+        em = null;
+
 
 
 
@@ -56,7 +64,12 @@ public class ActivityTrade extends AppCompatActivity {
                 //Данные успешно пришли, но надо проверить response.body() на null
                 if (response.isSuccessful()) {
                     if (response!=null) {
-                        myRecords = response.body()._embedded;
+                        em = response.body()._embedded;
+                        myRecords = em.records;
+
+                        Collections.sort(myRecords);
+                        Collections.reverse(myRecords);
+
                         RecyclerView recyclerView = findViewById(R.id.recyclerView_trade);
                         int numberOfColumns = 1;
                         recyclerView.setLayoutManager(new GridLayoutManager(ActivityTrade.this, numberOfColumns));

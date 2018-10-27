@@ -1,5 +1,7 @@
 package com.darina_pc.crypto;
 
+import android.support.annotation.NonNull;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class TradeResponse {
         ArrayList<Record> records;
     }
 
-    public static class Record {
+    public class Record implements Comparable {
 
         public LinksR _linksR;
         String id;
@@ -77,6 +79,13 @@ public class TradeResponse {
                 System.out.println(e);
                 return null;
             }
+        }
+
+
+        @Override
+        public int compareTo(@NonNull Object o) {
+            Record otherRecord = (Record) o;
+            return this.get_close_Data().compareTo(otherRecord.get_close_Data());
         }
     }
 
