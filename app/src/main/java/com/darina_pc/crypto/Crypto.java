@@ -28,18 +28,8 @@ public class Crypto implements Asset{
     }
 
     @Override
-    public void setAssetCode(String assetCode) {
-        this.assetCode = assetCode;
-    }
-
-    @Override
     public String getCategory() {
         return category;
-    }
-
-    @Override
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     @Override
@@ -48,16 +38,10 @@ public class Crypto implements Asset{
     }
 
     @Override
-    public void setRepresentationName(String representationName) {
-        this.representationName = representationName;
-    }
-
-    @Override
     public int getRating() {
         return rating;
     }
 
-    @Override
     public void setRating(int rating) {
         this.rating = rating;
     }
@@ -78,12 +62,18 @@ public class Crypto implements Asset{
         this.asset_issuer = asset_issuer;
     }
 
-    public Boolean getIs_counter() {
+    @Override
+    public boolean getIsCounter() {
         return is_counter;
     }
 
-    public void setIs_counter(Boolean is_counter) {
+    public void setIsCounter(Boolean is_counter) {
         this.is_counter = is_counter;
+    }
+
+    @Override
+    public int getAssetType() {
+        return Asset.CRYPTO;
     }
 
     @Override

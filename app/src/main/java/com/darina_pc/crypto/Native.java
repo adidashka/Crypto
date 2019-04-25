@@ -24,54 +24,27 @@ public class Native implements Asset{
         return assetCode;
     }
 
-    public void setAssetCode(String assetCode) {
-        this.assetCode = assetCode;
-    }
-
     public String getCategory() {
         return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getRepresentationName() {
         return representationName;
     }
 
-    public void setRepresentationName(String representationName) {
-        this.representationName = representationName;
-    }
-
     public int getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public String getAsset_type() {
-        return asset_type;
-    }
-
-    public void setAsset_type(String asset_type) {
-        this.asset_type = asset_type;
-    }
-
-    public Boolean getIs_counter() {
+    @Override
+    public boolean getIsCounter() {
         return is_counter;
     }
 
-    public void setIs_counter(Boolean is_counter) {
-        this.is_counter = is_counter;
+    @Override
+    public int getAssetType() {
+        return Asset.NATIVE;
     }
-
-    public AssetIssuer getAsset_issuer() {
-        return null;
-    }
-
 
     @Override
     public int compareTo(@NonNull Asset otherAsset) {

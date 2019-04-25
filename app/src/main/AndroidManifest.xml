@@ -19,6 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityTrade" />
+        <activity android:name=".AboutActivity"
+            android:label="@string/about">
+        </activity>
     </application>
 
 

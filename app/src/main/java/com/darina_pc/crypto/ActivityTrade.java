@@ -1,6 +1,5 @@
 package com.darina_pc.crypto;
 
-import android.app.Notification;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +29,7 @@ public class ActivityTrade extends AppCompatActivity {
 
 
     private String  base_asset_type, base_asset_code, base_asset_issuer;
-    MyRecyclerViewAdapter2 adapter;
+    TradesRecyclerView adapter;
 
     private TradeResponse.Embedded em;
     private ArrayList<TradeResponse.Record> myRecords = new ArrayList<>();
@@ -73,7 +72,7 @@ public class ActivityTrade extends AppCompatActivity {
                         RecyclerView recyclerView = findViewById(R.id.recyclerView_trade);
                         int numberOfColumns = 1;
                         recyclerView.setLayoutManager(new GridLayoutManager(ActivityTrade.this, numberOfColumns));
-                        adapter = new MyRecyclerViewAdapter2(ActivityTrade.this, myRecords);
+                        adapter = new TradesRecyclerView(ActivityTrade.this, myRecords);
                         recyclerView.setAdapter(adapter);
                     }
                 } else {

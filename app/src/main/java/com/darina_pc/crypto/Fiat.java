@@ -24,18 +24,8 @@ public class Fiat implements Asset {
     }
 
     @Override
-    public void setAssetCode(String assetCode) {
-        this.assetCode = assetCode;
-    }
-
-    @Override
     public String getCategory() {
         return category;
-    }
-
-    @Override
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     @Override
@@ -44,35 +34,18 @@ public class Fiat implements Asset {
     }
 
     @Override
-    public void setRepresentationName(String representationName) {
-        this.representationName = representationName;
-    }
-
-    @Override
     public int getRating() {
         return rating;
     }
 
     @Override
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    @Override
-    public String getAsset_type() {
-        return null;
-    }
-
-    public Boolean getIs_counter() {
+    public boolean getIsCounter() {
         return is_counter;
     }
 
-    public void setIs_counter(Boolean is_counter) {
-        this.is_counter = is_counter;
-    }
-
-    public AssetIssuer getAsset_issuer() {
-        return null;
+    @Override
+    public int getAssetType() {
+        return Asset.FIAT;
     }
 
     @Override

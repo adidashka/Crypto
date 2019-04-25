@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,9 +18,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
+public class MainActivity extends AppCompatActivity implements AssetsRecyclerViewAdapter.OnCryptoClickListener {
     private ArrayList<Asset> myAssets = new ArrayList<Asset>();
-    MyRecyclerViewAdapter adapter;
+    AssetsRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,12 +87,11 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
             Collections.sort(myAssets);
 
-                RecyclerView recyclerView = findViewById(R.id.recyclerView);
-                int numberOfColumns = 1;
-                recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
-                adapter = new MyRecyclerViewAdapter(this, myAssets);
-                adapter.setClickListener(this);
-                recyclerView.setAdapter(adapter);
+            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+            int numberOfColumns = 1;
+            recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
+            adapter = new AssetsRecyclerViewAdapter(this, myAssets, this);
+            recyclerView.setAdapter(adapter);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,18 +99,14 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-        Asset asset_pressed = myAssets.get(position);
-        String base_asset_type = asset_pressed.getAsset_type();
-        String base_asset_code = asset_pressed.getAssetCode();
-        String base_asset_issuer = asset_pressed.getAsset_issuer().getAddress();
-
+    public void onCryptoClick(Crypto crypto) {
         Intent intent = new Intent(MainActivity.this, ActivityTrade.class);
-        intent.putExtra("base_asset_type", base_asset_type);
-        intent.putExtra("base_asset_code", base_asset_code);
-        intent.putExtra("base_asset_issuer", base_asset_issuer);
+        intent.putExtra("base_asset_type", crypto.getAsset_type());
+        intent.putExtra("base_asset_code", crypto.getAssetCode());
+        intent.putExtra("base_asset_issuer", crypto.getAsset_issuer().getAddress());
         startActivity(intent);
     }
+
 
     private String  convertStreamToString(InputStream is) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -122,4 +119,26 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         return  baos.toString();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+
+
+        // Операции для выбранного пункта меню
+        switch (id) {
+            case R.id.about:
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
